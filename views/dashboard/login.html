@@ -17,13 +17,13 @@
                     <span class="input-group-addon">
                         <i class="fa fa-user"></i>
                     </span>
-                    <input type="text" name ="tc_name" class="form-control" placeholder="用户名">
+                    <input type="text" name ="tc_name" class="form-control" placeholder="用户名" value="前端学院">
                 </div>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon">
                         <i class="fa fa-key"></i>
                     </span>
-                    <input type="password" name ="tc_pass" class="form-control" placeholder="密码">
+                    <input type="password" name ="tc_pass" class="form-control" placeholder="密码" value='123456'>
                 </div>
                 <button type="submit" class="btn btn-lg btn-primary btn-block">登 录</button>
             </form>
@@ -39,7 +39,17 @@
                 type:'post',
                 data:data,
                 success:function(result){
-                    // alert("登录成功...")
+                    alert("登录成功...")
+                    var info =result.result;
+                    console.log(info);
+                    var infoSt = JSON.stringify(info)
+                    // 将对象转换为字符串：JSON.stringify()
+                    console.log(infoSt)
+                    console.log(typeof infoSt)
+                    $.cookie('cinfoSt',infoSt);
+                    // 以上主要是通过登录账号和密码，将相关的数据通过cookie带到后台
+                    // 注意：刚登录的账号和密码由于都是对象，所以要将对象转换为JSON字符串传递，以后有需要，再将JSON字符串转换为对象传回。
+                    // JSON字符串转换为对象的代码为：JSON.parse()
                     window.location.href = '/';
                 },
                 error:function(errInfo){
@@ -48,24 +58,7 @@
             })
             return false;
         })
-
-        //  $("#fromLogin").submit(function(){
-        //     //ser
-        //     var data = $(this).serialize();
-        //     $.ajax({
-        //         url:"http://api.botue.com/login",
-        //         type:"post",
-        //         data:data,
-        //         success:function(result){
-        //             alert("您已登录成功");
-        //         },
-        //         error:function(errorInfo){
-        //             alert("账号或者密码发生错误");
-        //         }
-        //     })
-        //     return false;
-        // })
-
+        // require(['login'])
     </script>
 </body>
 </html>
